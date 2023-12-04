@@ -282,12 +282,15 @@ class PdfApp(Page):
         # self.page_listing_frame.grid(row=1, column=2, padx=(20, 0), pady=(20, 0), sticky="nsew")
         # self.pages_refresh()
         #
+        U_WIDTH = APP_FRAME_WIDTH - 150
+        U_HEIGHT = APP_FRAME_HEIGHT - 250
 
         self.u_tabview_files = customtkinter.CTkTabview(
             master=self.tabview_t.tab("user flow"),
             width=5)
+        self.u_tabview_files.configure(width=U_WIDTH)
 
-        self.u_tabview_files.grid(row=0, column=20, padx=(20, 0), pady=(20, 0), sticky="nsew", rowspan=6)
+        self.u_tabview_files.grid(row=0, column=0, padx=(20, 0), pady=(20, 0), sticky="nsew", rowspan=6)
 
         self.u_tabview_files.add ("PDF page listing")  # add tab at the end
         self.u_tabview_files.add("TST combo listing")  # add tab at the end
@@ -298,15 +301,64 @@ class PdfApp(Page):
         # page listing
         self.u_page_listing_frame = customtkinter.CTkScrollableFrame(
             master=self.u_tabview_files.tab("PDF page listing"),
-            label_text="PDF Pages Listing")
-        self.u_page_listing_frame.grid(row=1, column=2, padx=(20, 0), pady=(20, 0), sticky="nsew")
-        self.pages_refresh()
+            label_text="PDF Pages Listing",
+            width=U_WIDTH,
+            height=U_HEIGHT
+        )
+        self.u_page_listing_frame.grid(row=0, column=0, padx=(20, 0), pady=(20, 0), sticky="nsew")
+        self.u_pages_icon_refresh()
+
+        ####################################
+        # merge pages
+        self.u_button_merge_pages = customtkinter.CTkButton(
+            master=self.tabview_t.tab("user flow"),
+            text='Merge Pages',
+            command=self.merge_pages
+        )
+        self.u_button_merge_pages.grid(row=5, column=0, padx=(20, 0), pady=(20, 0))
 
         # # TODO: file icons - display as image of file
         # # TODO: file icons - generate image based on contents
         # # TODO: use file icons in display listing
         # # TODO: Enable drab'n'drop
         # # TODO: generate combo file based pn select/sort settings
+
+
+    def u_pages_refresh(self):
+        # print(f'in pages_refresh')
+        self.u_page_listing_frame.grid_columnconfigure(0, weight=1)
+        self.u_page_listing_frame_switches = []
+        row = 0
+        u_pages_lst = self.get_pages_listing()
+        # print(f'c_lst: {c_lst}')
+        for f in u_pages_lst:
+            # print(f'f:{f}')
+            u_switch_name = customtkinter.CTkSwitch(master=self.u_page_listing_frame, text=f"{f}")
+            u_switch_name.grid(row=row, column=0, padx=10, pady=(0, 20))
+            row += 1
+            self.u_page_listing_frame_switches.append(u_switch_name)
+        # print(f'switches: {self.scrollable_frame_switches}')
+
+    def u_pages_icon_refresh(self):
+        print(f'in u_pages_icon_refresh')
+        self.u_page_listing_frame.grid_columnconfigure(0, weight=1)
+        self.u_page_listing_frame_switches = []
+        # row = 0
+        u_row = 0
+        u_col = 2
+        col_index = 0
+        u_pages_lst = self.get_pages_listing()
+        # print(f'c_lst: {c_lst}')
+        for f in u_pages_lst:
+            # print(f'f:{f}')
+            if col_index >= u_col:
+                col_index = 0
+                u_row += 1
+            u_switch_name = customtkinter.CTkSwitch(master=self.u_page_listing_frame, text=f'u_row: {u_row} :: u_col: {col_index} :: NEW: {f}')
+            u_switch_name.grid(row=u_row, column=col_index, padx=10, pady=(0, 20))
+            self.u_page_listing_frame_switches.append(u_switch_name)
+
+            col_index += 1
 
     def refresh_listings(self):
         self.refresh_f_listings()
@@ -398,79 +450,6 @@ class PdfApp(Page):
             self.page_listing_frame_switches.append(switch_name)
         # print(f'switches: {self.scrollable_frame_switches}')
 
-    def u_pages_refresh(self):
-        # print(f'in pages_refresh')
-        self.u_page_listing_frame.grid_columnconfigure(0, weight=1)
-        self.u_page_listing_frame_switches = []
-        row = 0
-        u_pages_lst = self.get_pages_listing()
-        # print(f'c_lst: {c_lst}')
-        for f in u_pages_lst:
-            # print(f'f:{f}')
-            u_switch_name = customtkinter.CTkSwitch(master=self.u_page_listing_frame, text=f"{f}")
-            u_switch_name.grid(row=row, column=0, padx=10, pady=(0, 20))
-            row += 1
-            self.u_page_listing_frame_switches.append(u_switch_name)
-        # print(f'switches: {self.scrollable_frame_switches}')
-
-    def u_pages_icon_refresh(self):
-        # print(f'in pages_refresh')
-        self.u_page_listing_frame.grid_columnconfigure(0, weight=1)
-        self.u_page_listing_frame_switches = []
-
-        icon_column = 2
-        icon_row = 0
-        u_pages_lst = self.get_pages_listing()
-
-        # print(f'c_lst: {c_lst}')
-
-        u_labelA = tkinter.Label(text=f'u_labelA')
-        u_labelA.grid(row=0, column=0, padx=10, pady=(0, 20))
-
-        u_labelB = tkinter.Label(text=f'u_labelB')
-        u_labelB.grid(row=1, column=0, padx=10, pady=(0, 20))
-
-        u_labelC = tkinter.Label(text=f'u_labelC')
-        u_labelC.grid(row=2, column=0, padx=10, pady=(0, 20))
-
-        u_row = 0
-        u_col = 0
-
-        for u_lst in u_pages_lst:
-            u_label = tkinter.Label(text=f'u_labelTST')
-            print(f'u_lst: {u_lst} :: u_row: {u_row} :: u_col: {u_col}')
-            u_label.grid(row=1, column=0, padx=10, pady=(0, 20))
-            u_col += 1
-            u_row += 1
-
-        #
-        # for u_lst in u_pages_lst:
-        #     u_col = 0
-        #     print(f'icon_lister: {u_lst}')
-        #     u_label = tkinter.Label(text=f"{u_lst}")
-        #     print(f'u_label: {u_label}')
-        #     for u_col in range(icon_column):
-        #         print(f'u_col: {u_col} :: u_row: {u_row}')
-        #         u_label.grid(row=u_row, column=u_col, padx=10, pady=(0, 20))
-
-                #
-                # u_icon_switch_name = customtkinter.CTkSwitch(master=self.u_page_listing_frame, text=f"{u_lst}")
-                # u_icon_switch_name.grid(row=u_row, column=u_col, padx=10, pady=(0, 20))
-                #
-            #
-            # u_row += 1
-            #
-            # print(f'u_col: {u_col} :: u_row: {u_row}')
-
-        # icon_column = 0
-        # icon_row = 0
-        # for f in u_pages_lst:
-        #     # print(f'f:{f}')
-        #     u_switch_name = customtkinter.CTkSwitch(master=self.u_page_listing_frame, text=f"{f}")
-        #     u_switch_name.grid(row=icon_row, column=0, padx=10, pady=(0, 20))
-        #     icon_row += 1
-        #     self.u_page_listing_frame_switches.append(u_switch_name)
-        # # print(f'switches: {self.scrollable_frame_switches}')
 
     def get_listing(self):
         listing = self.pdf_t.list_pdf_dir()
