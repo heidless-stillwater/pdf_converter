@@ -46,6 +46,9 @@ SIDEBAR_HEIGHT = 1000
 APP_FRAME_WIDTH = APP_WIDTH - SIDEBAR_WIDTH
 APP_FRAME_HEIGHT = 600
 
+U_WIDTH = APP_FRAME_WIDTH - 150
+U_HEIGHT = APP_FRAME_HEIGHT - 250
+
 BRAND_FRAME_HEIGHT = 100
 
 STATUS_FRAME_WIDTH = APP_FRAME_WIDTH - 40
@@ -60,5 +63,14 @@ SELECTION_WIDTH = APP_WIDTH - SIDEBAR_WIDTH
 SELECTION_HEIGHT = 100
 
 W_ICON = './images/pngtree-pdf-file-icon-png-png-image_4899509.jpeg'
+
+
+PDF_IMG_DIR = f'./pdf_files/pdf_images'
+PAGES_DIR = f'./pdf_files/pdf_pages'
+COMBO_DIR = f'./pdf_files/pdf_combo'
+
+ICON_IMG = './images/icons/icons8-batman-color/icons8-batman-144.png'
+DIR_IMG = './images/icons8-folder-48.png'
+LIST_IMG = './images/icons8-pdf-48.png'
 
 

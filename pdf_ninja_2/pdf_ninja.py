@@ -6,11 +6,15 @@ import customtkinter
 from pdf_toolbox import PdfToolbox
 from file_mgr import FileMgr
 import os
+
 from PIL import Image, ImageTk
 
 from constants import *
 
 from page import Page
+
+from pdf2image import convert_from_path
+
 
 customtkinter.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
 customtkinter.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
@@ -71,22 +75,9 @@ class PdfApp(Page):
         ninjaFrame = ttk.Frame(self)
         ninjaFrame.configure(style='ninjaFrame.TFrame')
         ninjaFrame.grid(row=0, column=0, sticky='EW')
-        #
-        # label = tk.Label(ninjaFrame, text="Ninja page", fg=TEXT_COLOR, bg=THEME_COLOR, font=("", 20, "bold"))
-        # # label.pack(side="top", fill="both", expand=True)
-        # label.grid(row=0, column=0, columnspan=1, sticky='S')
-        #
-        #
-        # commandFrame = tkinter.Frame(ninjaFrame)
-        # commandFrame.configure(bg=F_BACKGROUND_1)
-        # commandFrame.grid(row=0, column=0, columnspan=1, padx=0)
-
-        # print(f'APP_FRAME_WIDTH: {APP_FRAME_WIDTH}')
-        # print(f'APP_FRAME_HEIGHT: {APP_FRAME_HEIGHT}')
 
         ##################################
         # controls tab
-
         self.tabview_t = customtkinter.CTkTabview(master=ninjaFrame, bg_color=PALETTE_DARK, width=APP_FRAME_WIDTH, height=APP_FRAME_HEIGHT)
         # self.tabview_t.grid(row=0, column=0, padx=(20, 0), pady=(20, 0), rowspan=1, sticky='W')
         # self.tabview_t.configure(bg='blue')
@@ -94,7 +85,7 @@ class PdfApp(Page):
 
         self.tabview_t.add("commands")  # add tab at the end
         self.tabview_t.add("user flow")  # add tab at the end
-        self.tabview_t.set("user flow")  # set currently visible tab
+        self.tabview_t.set("commands")  # set currently visible tab
 
         ####################################
         # user_entry
@@ -181,11 +172,11 @@ class PdfApp(Page):
         self.tabview_files.grid(row=0, column=2, padx=(20, 0), pady=(20, 0), sticky="nsew", rowspan=6)
 
         self.tabview_files.add("file listing")  # add tab at the end
-        self.tabview_files.add  ("page listing")  # add tab at the end
+        self.tabview_files.add("page listing")  # add tab at the end
         self.tabview_files.add("combo listing")  # add tab at the end
         self.tabview_files.add("icon view")  # add tab at the end
 
-        self.tabview_files.set("icon view")  # set currently visible tab
+        self.tabview_files.set("file listing")  # set currently visible tab
 
         # file listing
         self.file_list_scrollable_frame = customtkinter.CTkScrollableFrame(
@@ -259,78 +250,112 @@ class PdfApp(Page):
         #######################################
         # USER FLOW
         #######################################
-        # self.pdf_user_flow = PdfToolbox()
-        #
-        # # display 'pages'
-        # pagesList = self.pdf_user_flow.list_pages_dir()
-        # print(pagesList)
-        #
-        # print(f'APP_FRAME_WIDTH: {APP_FRAME_WIDTH}')
-        #
-        # u_style = ttk.Style(self)
-        # u_style.configure('u_pageListFrame.TFrame', width=APP_FRAME_WIDTH, height=APP_FRAME_HEIGHT, background=PALETTE_DARK)
-        #
-        # # TODO: display list of current files
-        # pageListFrame = ttk.Frame(self, style='u_pageListFrame.TFrame')
-        # # pageListFrame = ttk.Frame(self)
-        # pageListFrame.grid(row=0, column=0, sticky='NW')
-        #
-        # # page listing
-        # self.page_listing_frame = customtkinter.CTkScrollableFrame(
-        #     master=self.tabview_files.tab("page listing"),
-        #     label_text="PDF Pages")
-        # self.page_listing_frame.grid(row=1, column=2, padx=(20, 0), pady=(20, 0), sticky="nsew")
-        # self.pages_refresh()
-        #
-        U_WIDTH = APP_FRAME_WIDTH - 150
-        U_HEIGHT = APP_FRAME_HEIGHT - 250
-
         self.u_tabview_files = customtkinter.CTkTabview(
             master=self.tabview_t.tab("user flow"),
             width=5)
         self.u_tabview_files.configure(width=U_WIDTH)
-
         self.u_tabview_files.grid(row=0, column=0, padx=(20, 0), pady=(20, 0), sticky="nsew", rowspan=6)
 
-        self.u_tabview_files.add ("PDF page listing")  # add tab at the end
-        self.u_tabview_files.add("TST combo listing")  # add tab at the end
+        self.u_tabview_files.add ("PDF Page Listing")  # add tab at the end
+        self.u_tabview_files.add("IMG listing")  # add tab at the end
         self.u_tabview_files.add("TST icon view")  # add tab at the end
+        self.u_tabview_files.set("PDF Page Listing")  # set currently visible tab
 
-        self.u_tabview_files.set("PDF page listing")  # set currently visible tab
-
-        # page listing
-        self.u_page_listing_frame = customtkinter.CTkScrollableFrame(
-            master=self.u_tabview_files.tab("PDF page listing"),
-            label_text="PDF Pages Listing",
+        self.image_listing_frame = customtkinter.CTkScrollableFrame(
+            master=self.u_tabview_files.tab("PDF Page Listing"),
+            label_text="Image Listing",
             width=U_WIDTH,
             height=U_HEIGHT
         )
-        self.u_page_listing_frame.grid(row=0, column=0, padx=(20, 0), pady=(20, 0), sticky="nsew")
+        self.image_listing_frame.grid(row=0, column=0, padx=(20, 0), pady=(20, 0), sticky="nsew")
         self.u_pages_icon_refresh()
 
-        ####################################
-        # merge pages
-        self.u_button_merge_pages = customtkinter.CTkButton(
-            master=self.tabview_t.tab("user flow"),
-            text='Merge Pages',
-            command=self.merge_pages
-        )
-        self.u_button_merge_pages.grid(row=5, column=0, padx=(20, 0), pady=(20, 0))
 
-        # # TODO: file icons - display as image of file
-        # # TODO: file icons - generate image based on contents
-        # # TODO: use file icons in display listing
-        # # TODO: Enable drab'n'drop
-        # # TODO: generate combo file based pn select/sort settings
+    def u_pages_icon_refresh(self):
+        u_pages_lst = self.get_pages_listing()
+        print(f'u_images_lst: {u_pages_lst}')
+        u_page_listing_frame_switches = []
 
+        # define out images
+        folder_img = ImageTk.PhotoImage(Image.open(DIR_IMG).resize((35, 35)))
+        list_image = ImageTk.PhotoImage(Image.open(LIST_IMG).resize((60, 60)))
+        # self.icon_img = ImageTk.PhotoImage(Image.open(ICON_IMG).resize((60, 60)))
+        icon_lst = []
+        for in_file in u_pages_lst:
+            with open(in_file, 'w') as in_img:
+
+                print(f'convert file: {PAGES_DIR}/{in_file}')
+                img = convert_from_path(f'{PAGES_DIR}/{in_file}')
+
+                for i in range(len(img)):
+                    # print(f'in_file: {in_file} :: {img[i]}')
+
+                    # Save pages as images in the pdf
+                    # save_file = f'{PDF_IMG_DIR}/{img}'
+                    save_file = './pdf_files/pdf_images/' + in_file + '.png'
+                    # print(f'save_file: {save_file}')
+
+                    # images[i].save('page'+ str(i) +'.jpg', 'JPEG')
+
+                    img[i].save(save_file, 'PNG')
+
+                # icon_img = ImageTk.PhotoImage(Image.open(ICON_IMG).resize((60, 60)))
+                # icon_lst.append(icon_img)
+                # out_img.write(out_file)
+
+        print(f'icon_lst: {icon_lst}')
+
+        u_row_idx = 0
+        u_col_idx = 0
+        num_cols = 3
+        for p_img in u_pages_lst:
+            if u_col_idx >= num_cols:
+                u_col_idx = 0
+                u_row_idx += 1
+            OUT_FILE = f'{PDF_IMG_DIR}/{p_img}'
+            IMG_FILE = f'{PDF_IMG_DIR}/{p_img}'
+            IN_FILE = f'{PAGES_DIR}/{p_img}'
+
+            # Create a photoimage object of the image in the path
+
+            sz_w = 60
+            sz_h = int(sz_w*1.41)
+            load_file = './pdf_files/pdf_images/' + p_img + '.png'
+
+            print(f'load_file: {load_file}')
+
+            icon_img = Image.open(load_file).resize((sz_w, sz_h))
+            photo_img = ImageTk.PhotoImage(icon_img)
+            pdf_lbl = tkinter.Label(image=photo_img)
+            pdf_lbl.image = photo_img
+            # label1.grid(row=u_row, column=0, padx=10, pady=(0, 20))
+
+            u_switch_name = customtkinter.CTkSwitch(master=self.image_listing_frame, text=IN_FILE)
+            u_switch_name.grid(row=u_row_idx, column=u_col_idx, padx=10, pady=(0, 20))
+            u_page_listing_frame_switches.append(u_switch_name)
+
+            u_img_lbl = tkinter.Label(
+                master=self.image_listing_frame,
+                image=pdf_lbl.image,
+                # image=self.list_image,
+                text=load_file,
+                compound='top',
+                fg='white',
+                # background='grey',
+                # width=100
+                background='#2b2b2b'
+            )
+            u_img_lbl.grid(row=u_row_idx, column=u_col_idx, padx=10, pady=(0, 20))
+            u_col_idx += 1
 
     def u_pages_refresh(self):
-        # print(f'in pages_refresh')
+        print(f'in pages_refresh')
         self.u_page_listing_frame.grid_columnconfigure(0, weight=1)
         self.u_page_listing_frame_switches = []
         row = 0
         u_pages_lst = self.get_pages_listing()
         # print(f'c_lst: {c_lst}')
+
         for f in u_pages_lst:
             # print(f'f:{f}')
             u_switch_name = customtkinter.CTkSwitch(master=self.u_page_listing_frame, text=f"{f}")
@@ -338,27 +363,6 @@ class PdfApp(Page):
             row += 1
             self.u_page_listing_frame_switches.append(u_switch_name)
         # print(f'switches: {self.scrollable_frame_switches}')
-
-    def u_pages_icon_refresh(self):
-        print(f'in u_pages_icon_refresh')
-        self.u_page_listing_frame.grid_columnconfigure(0, weight=1)
-        self.u_page_listing_frame_switches = []
-        # row = 0
-        u_row = 0
-        u_col = 2
-        col_index = 0
-        u_pages_lst = self.get_pages_listing()
-        # print(f'c_lst: {c_lst}')
-        for f in u_pages_lst:
-            # print(f'f:{f}')
-            if col_index >= u_col:
-                col_index = 0
-                u_row += 1
-            u_switch_name = customtkinter.CTkSwitch(master=self.u_page_listing_frame, text=f'u_row: {u_row} :: u_col: {col_index} :: NEW: {f}')
-            u_switch_name.grid(row=u_row, column=col_index, padx=10, pady=(0, 20))
-            self.u_page_listing_frame_switches.append(u_switch_name)
-
-            col_index += 1
 
     def refresh_listings(self):
         self.refresh_f_listings()
@@ -415,6 +419,10 @@ class PdfApp(Page):
 
     def get_pages_listing(self):
         listing = self.pdf_t.list_pages_dir()
+        return listing
+
+    def get_images_listing(self):
+        listing = self.pdf_t.list_images_dir()
         return listing
 
     def get_combo_listing(self):

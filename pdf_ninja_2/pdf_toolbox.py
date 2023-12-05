@@ -3,6 +3,7 @@ import os
 
 PDF_FILES = './pdf_files'
 PDF_PAGES = './pdf_files/pdf_pages'
+PDF_IMAGES = './pdf_files/pdf_images'
 PDF_COMBO = './pdf_files/pdf_combo'
 
 NOTHING_SELECTED = 'NOTHING_SELECTED'
@@ -50,6 +51,25 @@ class PdfToolbox:
             # UserInterface.dir_listing.insert(index, file_name)
             index += 1
         # print(f'listing: {listing}')
+        return listing
+
+    def list_images_dir(self):
+        # print(f'in PdfToolbox.list_pdf_dir')
+
+        # ignore directories
+        dir_contents = [f for f in os.listdir(PDF_IMAGES) if os.path.isfile(os.path.join(PDF_IMAGES, f))]
+        # print(f'pdf_toolbox;list_pdf_dir:dir_contents: {dir_contents}')
+
+        file_text = ''
+        listing = []
+        index = 1
+        for file_name in dir_contents:
+            # print(f'file_name: {file_name}')
+            file_text += f'{file_name}\n'
+            listing.append(file_name)
+            # UserInterface.dir_listing.insert(index, file_name)
+            index += 1
+        print(f'images listing: {listing}')
         return listing
 
     def list_combo_dir(self):
