@@ -64,13 +64,21 @@ SELECTION_HEIGHT = 100
 
 W_ICON = './images/pngtree-pdf-file-icon-png-png-image_4899509.jpeg'
 
+BUS_NAME = 'PDF Ninja'
+BUS_LOGO = './images/bus_graphics/V-For-Vendetta-Mask.png'
 
 PDF_IMG_DIR = f'./pdf_files/pdf_images'
+
+PDF_FILES = f'./pdf_files'
 PAGES_DIR = f'./pdf_files/pdf_pages'
 COMBO_DIR = f'./pdf_files/pdf_combo'
+COMBO_PAGES_DIR = f'{COMBO_DIR}/combo_pages'
+COMBO_IMAGES_DIR = f'{COMBO_DIR}/combo_images'
 
 ICON_IMG = './images/icons/icons8-batman-color/icons8-batman-144.png'
+BATMAN_IMG_0 = './images/icons/icons8-batman-color/icons8-batman-144.png'
 DIR_IMG = './images/icons8-folder-48.png'
 LIST_IMG = './images/icons8-pdf-48.png'
 
+CMD_FILE_LISTING_WIDTH = 600
 

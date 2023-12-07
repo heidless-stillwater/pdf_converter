@@ -1,10 +1,10 @@
 from PyPDF2 import PdfFileReader, PdfFileWriter, PdfFileMerger
 import os
-
-PDF_FILES = './pdf_files'
-PDF_PAGES = './pdf_files/pdf_pages'
-PDF_IMAGES = './pdf_files/pdf_images'
-PDF_COMBO = './pdf_files/pdf_combo'
+from constants import *
+#
+#
+# PDF_FILES = './pdf_files'
+# PDF_IMG_DIR = './pdf_files/pdf_images'
 
 NOTHING_SELECTED = 'NOTHING_SELECTED'
 
@@ -38,7 +38,7 @@ class PdfToolbox:
         # print(f'in PdfToolbox.list_pdf_dir')
 
         # ignore directories
-        dir_contents = [f for f in os.listdir(PDF_PAGES) if os.path.isfile(os.path.join(PDF_PAGES, f))]
+        dir_contents = [f for f in os.listdir(PAGES_DIR) if os.path.isfile(os.path.join(PAGES_DIR, f))]
         # print(f'pdf_toolbox;list_pdf_dir:dir_contents: {dir_contents}')
 
         file_text = ''
@@ -57,7 +57,7 @@ class PdfToolbox:
         # print(f'in PdfToolbox.list_pdf_dir')
 
         # ignore directories
-        dir_contents = [f for f in os.listdir(PDF_IMAGES) if os.path.isfile(os.path.join(PDF_IMAGES, f))]
+        dir_contents = [f for f in os.listdir(PDF_IMG_DIR) if os.path.isfile(os.path.join(PDF_IMG_DIR, f))]
         # print(f'pdf_toolbox;list_pdf_dir:dir_contents: {dir_contents}')
 
         file_text = ''
@@ -76,7 +76,7 @@ class PdfToolbox:
         # print(f'in PdfToolbox.list_pdf_dir')
 
         # ignore directories
-        dir_contents = [f for f in os.listdir(PDF_COMBO) if os.path.isfile(os.path.join(PDF_COMBO, f))]
+        dir_contents = [f for f in os.listdir(COMBO_DIR) if os.path.isfile(os.path.join(COMBO_DIR, f))]
         # print(f'pdf_toolbox;list_pdf_dir:dir_contents: {dir_contents}')
 
         file_text = ''
@@ -91,9 +91,32 @@ class PdfToolbox:
         # print(f'listing: {listing}')
         return listing
 
-    def split_pdf_into_pages(self, pdf_file, name_of_split):
-        # print(f'split_pdf_into_pages:pdf_path: {pdf_file}')
-        pdf_path = f'{PDF_FILES}/{pdf_file}'
+    def split_combo_pdf_into_pages(self, pdf_file, name_of_split):
+        print(f'split_pdf_into_pages:pdf_file: {pdf_file}')
+        pdf_path = f'{COMBO_DIR}/{pdf_file}'
+        print(f'pdf_path: {pdf_path}')
+        with open(pdf_path, 'rb') as f:
+            print(f'0: opening file')
+            pdf = PdfFileReader(f)
+            information = pdf.getDocumentInfo()
+            number_of_pages = pdf.getNumPages()
+            print(f'x: number_of_pages: {number_of_pages}')
+
+            for page in range(number_of_pages):
+                print(f'1:processing page: {page}')
+                pdf_writer = PdfFileWriter()
+                pdf_writer.addPage(pdf.getPage(page))
+
+                output = f'{COMBO_PAGES_DIR}/{name_of_split}{page}.pdf'
+                print(f'split_pdf_into_pages:output: {output}')
+
+                with open(output, 'wb') as output_pdf:
+                    pdf_writer.write(output_pdf)
+
+    def split_pdf_into_pages(self, in_dir, pdf_file, name_of_split):
+        print(f'split_pdf_into_pages:pdf_path: {pdf_file}')
+        pdf_path = f'{in_dir}/{pdf_file}'
+        print(f'pdf_path: {pdf_path}')
         with open(pdf_path, 'rb') as f:
             pdf = PdfFileReader(f)
             information = pdf.getDocumentInfo()
@@ -103,7 +126,8 @@ class PdfToolbox:
                 pdf_writer = PdfFileWriter()
                 pdf_writer.addPage(pdf.getPage(page))
 
-                output = f'{PDF_PAGES}/{name_of_split}{page}.pdf'
+                output = f'{PAGES_DIR}/{name_of_split}{page}.pdf'
+                print(f'output: {output}')
                 print(f'split_pdf_into_pages:output: {output}')
 
                 with open(output, 'wb') as output_pdf:
@@ -141,8 +165,8 @@ class PdfToolbox:
         listing = m_lst
 
         for pdf in listing:
-            pdf = f'{PDF_PAGES}/{pdf}'
+            pdf = f'{PAGES_DIR}/{pdf}'
             merger.append(pdf)
 
-        merger.write(f"{PDF_COMBO}/{o_file}")
+        merger.write(f"{COMBO_DIR}/{o_file}")
         merger.close()
