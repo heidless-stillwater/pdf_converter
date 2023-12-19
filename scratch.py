@@ -14,8 +14,25 @@ ninjaFrame
     self.tabview_t.tab("Re-Order Combo")
         self.u_tabview_files.tab("PDF Infiles Listing"),
                # dnd_sort_list_control_bar
+            dashboard_operations_top
+                topbar_load_pdf_file_btn
+                topbar_gen_pages_from_pdf_infiles_btn
+                topbar_gen_combo_infiles_all_btn
+                topbar_gen_combo_pages_from_pdf_infiles_btn
+                topbar_gen_combo_images_from_combo_infiles_btn
+                topbar_full_was_cycle_btn
 
-768            dashboard_listing_frame
+564         dashboard_listing_frame
+
+            dashboard_operations_bottom
+                combo_dnd_merge_file_entry
+                combo_filename_dnd_entry
+                combo_dnd_operations
+                    load_pdf_file_btn
+                    combo_group_pages_btn
+
+
+
 558            dashboard_listing_frame
 
 580            dashboard_operations_bottom
@@ -35,7 +52,6 @@ ninjaFrame
 183            support_operations_top_frame
 175            support_operations_bottom_frame
                     dashboard_listings_frame
-
 
             support_container_frame
                 combo_listing_frame

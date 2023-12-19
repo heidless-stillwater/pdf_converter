@@ -188,7 +188,7 @@ class PdfApp(Page):
             # width=1000,
             # height=50,
         )
-        self.support_operations_top_frame.grid(row=0, column=0, columnspan=1, padx=(0, 0), pady=(0, 0), sticky='nsew')
+        self.support_operations_top_frame.grid(row=0, column=0, columnspan=1, padx=(5, 5), pady=(5, 5), sticky='nsew')
 
         # top control bar - DASHBOARD
         # self.dnd_sort_list_control_bar = tk.Frame(
@@ -586,17 +586,17 @@ class PdfApp(Page):
             master=self.u_tabview_files.tab("PDF Infiles Listing"),
             bg='black',
         )
-        self.dashboard_operations_bottom.grid(row=2, column=0, padx=(5, 5), pady=(5, 5), sticky='nsew')
+        self.dashboard_operations_bottom.grid(row=2, column=0, padx=(5, 5), pady=(5, 5), sticky='ew')
 
         self.dashboard_operations_top = tk.Frame(
             master=self.u_tabview_files.tab("PDF Infiles Listing"),
             # width=DND_TOPBAR_HEIGHT,
             # height=DND_TOPBAR_HEIGHT,
-            width=1000,
-            height=1000,
+            width=100,
+            height=100,
             bg='black',
         )
-        self.dashboard_operations_top.grid(row=0, column=0, padx=(5, 5), pady=(5, 5), sticky='nsew')
+        self.dashboard_operations_top.grid(row=0, column=0, padx=(5, 5), pady=(5, 5), sticky='')
 
        # load pdf btn
         self.topbar_load_pdf_file_btn = customtkinter.CTkButton(
@@ -641,7 +641,7 @@ class PdfApp(Page):
             text='Generate Combo Images',
             command=lambda: self.refresh_combo_pages_images(combo_pages_listing, combo_pages_in_dir)
         )
-        self.topbar_gen_combo_images_from_combo_infiles_btn.grid(row=0, column=4, padx=(5, 5), pady=(5, 5))
+        self.topbar_gen_combo_images_from_combo_infiles_btn.grid(row=2, column=0, padx=(5, 5), pady=(5, 5))
 
         # run full was cycle
         self.topbar_full_was_cycle_btn = customtkinter.CTkButton(
@@ -776,11 +776,13 @@ class PdfApp(Page):
             master=self.u_tabview_files.tab("PDF Infiles Listing"),
             label_text="Combo DnD Sort Listing",
             fg_color='red',
-            width=DND_LISTING_WIDTH,
-            height=DND_LISTING_HEIGHT,
+            # width=DND_LISTING_WIDTH,
+            # height=DND_LISTING_HEIGHT,
+            width=100,
+            height=100,
         )
         self.dashboard_listing_frame.configure(scrollbar_button_color='red')
-        self.dashboard_listing_frame.grid(row=1, column=0, padx=(0, 0), pady=(0, 0), sticky="nsew")
+        self.dashboard_listing_frame.grid(row=1, column=0, padx=(0, 0), pady=(0, 0), sticky="ew")
         self.dashboard_listing_frame_switches = []
 
 
