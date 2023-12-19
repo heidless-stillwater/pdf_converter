@@ -17,32 +17,33 @@ class MainView(tk.Frame):
     def __init__(self, *args, **kwargs):
         tk.Frame.__init__(self, *args, **kwargs)
 
-        super().__init__()
+        # super().__init__()
 
         # -------------- STYLING --------------
         s = ttk.Style(self)
         s.configure('brandingFrame.TFrame', background=PALETTE_LIGHTEST)
         s.configure('sidebarFrame.TFrame', background=PALETTE_DARK)
-        s.configure('statusFrame.TFrame', background=PALETTE_DARK)
-        s.configure('AppFrame.TFrame', background=PALETTE_LIGHTEST)
+        s.configure('statusFrame.TFrame', background=PALETTE_DARKEST)
+        # s.configure('AppFrame.TFrame', background=PALETTE_LIGHTEST)
+        s.configure('AppFrame.TFrame', background='yellow', fg_color='blue')
         s.configure('ControlsFrame.TFrame', background=PALETTE_DARKEST)
         # s.configure('Vertical.TFrame', background=F_BACKGROUND_6)
 
         # -------------- WIDGETS --------------
         BrandingFrame = ttk.Frame(self, width=SIDEBAR_WIDTH, height=BRAND_FRAME_HEIGHT, style='brandingFrame.TFrame')
-        BrandingFrame.grid(row=0, column=0)
+        BrandingFrame.grid(row=0, column=0, sticky='NSEW')
 
         SidebarFrame = ttk.Frame(self, width=SIDEBAR_WIDTH, height=SIDEBAR_HEIGHT, style='sidebarFrame.TFrame')
         SidebarFrame.grid(row=1, column=0, rowspan=2, sticky='NSEW')
 
         StatusFrame = ttk.Frame(self, width=STATUS_FRAME_WIDTH , height=BRAND_FRAME_HEIGHT, style='statusFrame.TFrame')
-        StatusFrame.grid(row=0, column=1)
+        StatusFrame.grid(row=0, column=1, sticky='NSEW')
 
         AppFrame = ttk.Frame(self, style='AppFrame.TFrame')
         AppFrame.grid(row=1, column=1, padx=0, sticky='NSEW')
-
-        ControlsFrame = ttk.Frame(self, width=CONTROLS_FRAME_WIDTH, height=CONTROLS_FRAME_HEIGHT, style='ControlsFrame.TFrame')
-        ControlsFrame.grid(row=2, column=1, padx=0)
+        #
+        # ControlsFrame = ttk.Frame(self, width=CONTROLS_FRAME_WIDTH, height=500, style='ControlsFrame.TFrame')
+        # ControlsFrame.grid(row=2, column=1, padx=0)
 
         # configure style
         b_s = ttk.Style(self)
@@ -68,7 +69,7 @@ class MainView(tk.Frame):
                             fg=TEXT_COLOR,
                             font=("", 15, "bold"),
                             )
-        bus_name.grid(row=0, column=0, columnspan=1, sticky='N', pady=30, padx=20)
+        bus_name.grid(row=0, column=0, columnspan=1, sticky='N', pady=10, padx=0)
 
         #
         p1 = PageOne(AppFrame)

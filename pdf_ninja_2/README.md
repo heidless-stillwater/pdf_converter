@@ -1,5 +1,7 @@
 # pdf guides
 
+[python-patterns.guide](https://python-patterns.guide/)
+
 [How to Work With a PDF in Python](https://realpython.com/pdf-python/)
 
 [How to Work With a PDF in Python - YOUTUBE](https://realpython.com/courses/pdf-python/)

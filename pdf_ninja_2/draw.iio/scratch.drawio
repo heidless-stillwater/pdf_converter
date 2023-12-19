@@ -1,0 +1,34 @@
+<mxfile host="Electron" modified="2023-12-14T09:31:20.646Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.2 Chrome/114.0.5735.289 Electron/25.9.4 Safari/537.36" etag="enp1jfS8y6Vs9RIiTRf4" version="22.1.2" type="device">
+  <diagram name="Page-1" id="B_xGcAM3P_inpgNh0QWJ">
+    <mxGraphModel dx="1963" dy="945" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="02UcE4HGS8UPykY4FuSo-5" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="260" width="690" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="02UcE4HGS8UPykY4FuSo-1" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="130" y="90" width="870" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="02UcE4HGS8UPykY4FuSo-2" value="&lt;pre style=&quot;background-color:#2b2b2b;color:#a9b7c6;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:9.8pt;&quot;&gt;267&lt;/pre&gt;&lt;pre style=&quot;background-color:#2b2b2b;color:#a9b7c6;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:9.8pt;&quot;&gt;self.combo_sort_listing_frame = customtkinter.CTkScrollableFrame(&lt;br&gt;           master=self.sort_listing_frame&lt;span style=&quot;color:#cc7832;&quot;&gt;,&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color:#cc7832;&quot;&gt;           &lt;/span&gt;&lt;span style=&quot;color:#aa4926;&quot;&gt;label_text&lt;/span&gt;=&lt;span style=&quot;color:#6a8759;&quot;&gt;&quot;Combo Sort Listing&quot;&lt;/span&gt;&lt;span style=&quot;color:#cc7832;&quot;&gt;,&lt;/span&gt;&lt;/pre&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="190" y="130" width="700" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="02UcE4HGS8UPykY4FuSo-3" value="&lt;pre style=&quot;background-color:#2b2b2b;color:#a9b7c6;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:9.8pt;&quot;&gt;&lt;br&gt;307&lt;/pre&gt;&lt;pre style=&quot;background-color:#2b2b2b;color:#a9b7c6;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:9.8pt;&quot;&gt;self.combo_sort_listing_frame = customtkinter.CTkScrollableFrame(&lt;br&gt;            &lt;span style=&quot;color:#aa4926;&quot;&gt;master&lt;/span&gt;=self.combo_listing_frame&lt;span style=&quot;color:#cc7832;&quot;&gt;,&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color:#cc7832;&quot;&gt;            &lt;/span&gt;&lt;span style=&quot;color:#aa4926;&quot;&gt;label_text&lt;/span&gt;=&lt;span style=&quot;color:#6a8759;&quot;&gt;&quot;Combo Infiles Listing&quot;&lt;/span&gt;&lt;span style=&quot;color:#cc7832;&quot;&gt;,&lt;br&gt;&lt;/span&gt;&lt;/pre&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="240" y="270" width="600" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="02UcE4HGS8UPykY4FuSo-4" value="&lt;pre style=&quot;background-color:#2b2b2b;color:#a9b7c6;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:9.8pt;&quot;&gt;386       &lt;/pre&gt;&lt;pre style=&quot;background-color:#2b2b2b;color:#a9b7c6;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:9.8pt;&quot;&gt;combo_sort_listing_frame = customtkinter.CTkScrollableFrame(&lt;br&gt;                        &lt;span style=&quot;color:#aa4926;&quot;&gt;master&lt;/span&gt;=self.combo_listing_frame&lt;span style=&quot;color:#cc7832;&quot;&gt;,&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color:#cc7832;&quot;&gt;                        &lt;/span&gt;&lt;span style=&quot;color:#aa4926;&quot;&gt;label_text&lt;/span&gt;=&lt;span style=&quot;color:#6a8759;&quot;&gt;&quot;Combo Infiles Listing&quot;&lt;/span&gt;&lt;span style=&quot;color:#cc7832;&quot;&gt;,&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color:#cc7832;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/pre&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="220" y="400" width="640" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="02UcE4HGS8UPykY4FuSo-10" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="20" y="630" width="710" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="02UcE4HGS8UPykY4FuSo-8" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="02UcE4HGS8UPykY4FuSo-10">
+          <mxGeometry y="10" width="710" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="02UcE4HGS8UPykY4FuSo-9" value="&lt;pre style=&quot;background-color:#2b2b2b;color:#a9b7c6;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:9.8pt;&quot;&gt;&lt;br&gt;           def &lt;span style=&quot;color:#ffc66d;&quot;&gt;combo_sort_refresh&lt;/span&gt;(&lt;span style=&quot;color:#72737a;&quot;&gt;self&lt;/span&gt;):&lt;br&gt;                &lt;span style=&quot;color:#8888c6;&quot;&gt;print&lt;/span&gt;(&lt;span style=&quot;color:#6a8759;&quot;&gt;f&#39;&lt;/span&gt;&lt;span style=&quot;color:#cc7832;&quot;&gt;\n&lt;/span&gt;&lt;span style=&quot;color:#6a8759;&quot;&gt;combo_sort_refresh&#39;&lt;/span&gt;)&lt;br&gt;&lt;span style=&quot;color:#6897bb;&quot;&gt;552             &lt;/span&gt;self.combo_sort_listing_frame.grid_columnconfigure(&lt;span style=&quot;color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot;color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;color:#aa4926;&quot;&gt;weight&lt;/span&gt;=&lt;span style=&quot;color:#6897bb;&quot;&gt;1&lt;/span&gt;)&lt;br&gt;&lt;br&gt;                ...&lt;br&gt;&lt;br&gt;                self.combo_sort_image_frame = ttk.Frame(&lt;br&gt;                    &lt;span style=&quot;color:#aa4926;&quot;&gt;master&lt;/span&gt;=self.combo_sort_listing_frame&lt;span style=&quot;color:#cc7832;&quot;&gt;,&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color:#cc7832;&quot;&gt;                &lt;/span&gt;)&lt;/pre&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="02UcE4HGS8UPykY4FuSo-10">
+          <mxGeometry x="20" width="670" height="200" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
