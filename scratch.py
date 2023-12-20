@@ -1,4 +1,9 @@
 
+u_tabview_files -> nj_dashboard
+
+
+
+
 support_container_frame
 
 
@@ -6,13 +11,13 @@ support_operations_bottom_frame
 
 
 
-master=self.u_tabview_files.tab("PDF Infiles Listing"),
+master=self.nj_dashboard.tab("PDF Infiles Listing"),
 
 
 
 ninjaFrame
     self.tabview_t.tab("Re-Order Combo")
-        self.u_tabview_files.tab("PDF Infiles Listing"),
+        self.nj_dashboard.tab("PDF Infiles Listing"),
                # dnd_sort_list_control_bar
             dashboard_operations_top
                 topbar_load_pdf_file_btn
@@ -48,7 +53,7 @@ ninjaFrame
 
 ninjaFrame
     self.tabview_t.tab("Re-Order Combo")
-        self.u_tabview_files.tab("PDF Combo")
+        self.nj_dashboard.tab("PDF Combo")
 183            support_operations_top_frame
 175            support_operations_bottom_frame
                     dashboard_listings_frame
@@ -103,7 +108,7 @@ ninjaFrame
 
 ninjaFrame
     self.tabview_t.tab("Re-Order Combo")
-        self.u_tabview_files.tab("PDF Combo")
+        self.nj_dashboard.tab("PDF Combo")
             support_container_frame
                 combo_listing_frame
                     # support_operations_top_frame_PROTO
@@ -162,7 +167,7 @@ ninjaFrame
 # master=self.u_tabview_files.tab("PDF Combo"),
 
 self.support_operations_top_frame = tk.Frame(
-    master=self.u_tabview_files.tab("PDF Combo"),
+    master=self.nj_dashboard.tab("PDF Combo"),
 
 
 

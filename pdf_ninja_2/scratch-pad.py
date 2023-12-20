@@ -106,7 +106,7 @@ combo_pages_listing_frame
 
 299
         self.combo_listing_frame = tk.Frame(
-            master=self.u_tabview_files.tab("PDF Combo"),
+            master=self.nj_dashboard.tab("PDF Combo"),
             bg='red',
             width=1000,
             height=1000,
@@ -176,7 +176,7 @@ combo_listing_frame
 
         self.dashboard_listing_frame = ttk.Frame(
             # self,
-            master=self.u_tabview_files.tab("PDF Combo"),
+            master=self.nj_dashboard.tab("PDF Combo"),
             width=100,
             # width=SIDEBAR_WIDTH,
             height=BRAND_FRAME_HEIGHT,

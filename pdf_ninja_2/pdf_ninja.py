@@ -64,9 +64,6 @@ class PdfApp(Page):
             height=APP_FRAME_HEIGHT,
             bg=MAIN_BACKGROUND_COLOR,
         )
-        # ninjaFrame.columnconfigure(0, weight=3)
-        # ninjaFrame.columnconfigure(1, weight=1)
-        # ninjaFrame.columnconfigure(2, weight=1)
         ninjaFrame.grid(row=0, column=0, sticky='NSEW')
 
         ##################################
@@ -74,20 +71,19 @@ class PdfApp(Page):
         self.tabview_t = customtkinter.CTkTabview(
             master=ninjaFrame,
             bg_color=PALETTE_DARK,
-            width=APP_FRAME_WIDTH,
-            height=APP_FRAME_HEIGHT
+            # width=APP_FRAME_WIDTH,
+            # height=APP_FRAME_HEIGHT,
+            width=100,
+            height=100,
         )
-        # self.tabview_t.grid(row=0, column=0, padx=(20, 0), pady=(20, 0), rowspan=1, sticky='W')
-        # self.tabview_t.configure(bg='blue')
-        self.tabview_t.grid(row=0, column=0, padx=0, pady=0, rowspan=1, sticky='NSEW')
+        self.tabview_t.grid(row=0, column=0, padx=(5, 5), pady=(5, 5), rowspan=1, sticky='nsew')
 
         self.tabview_t.add("New Combo")  # add tab at the end
-        self.tabview_t.add("Re-Order Combo")  # add tab at the end
+        self.tabview_t.add("Dashboard QQQ")  # add tab at the end
 
         # set default tab
         # self.tabview_t.set("New Combo")  # set currently visible tab
-        self.tabview_t.set("Re-Order Combo")  # set currently visible tab
-
+        self.tabview_t.set("Dashboard QQQ")  # set currently visible tab
 
         # icon display
         self.pdf_t = PdfToolbox()
@@ -105,7 +101,6 @@ class PdfApp(Page):
         self.nj_support_load_pdf_btn()
 
         self.nj_support_generate_pages_btn()
-
 
         ####################################
         # file manager
@@ -135,45 +130,33 @@ class PdfApp(Page):
         #######################################
         # USER FLOW
         #######################################
-        self.u_tabview_files = customtkinter.CTkTabview(
-            master=self.tabview_t.tab("Re-Order Combo"),
+        self.nj_dashboard = customtkinter.CTkTabview(
+            master=self.tabview_t.tab("Dashboard QQQ"),
             width=1000,
             height=1000)
-        self.u_tabview_files.configure(width=U_WIDTH)
-        self.u_tabview_files.grid(row=0, column=0, padx=(0, 0), pady=(0, 0), sticky="nsew", rowspan=1)
+        self.nj_dashboard.configure(width=U_WIDTH)
+        self.nj_dashboard.grid(row=0, column=0, padx=(0, 0), pady=(0, 0), sticky="nsew", rowspan=1)
 
-        self.u_tabview_files.add("PDF Infiles Listing")  # add tab at the end
-        self.u_tabview_files.add("PDF Combo")  # add tab at the end
-        self.u_tabview_files.add("TST icon view")  # add tab at the end
+        self.nj_dashboard.add("PDF Infiles Listing")  # add tab at the end
+        self.nj_dashboard.add("PDF Combo")  # add tab at the end
+        self.nj_dashboard.add("TST icon view")  # add tab at the end
 
         # set default tab
         # self.u_tabview_files.set("PDF Combo")  # set currently visible tab
-        self.u_tabview_files.set("PDF Combo")  # set currently visible tab
-
-# xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-#         self.u_tabview_files("PDF Combo") #.grid_columnconfigure(0, weight=1)
-        # self.page_listing_frame.grid_columnconfigure(0, weight=1)
+        self.nj_dashboard.set("PDF Combo")  # set currently visible tab
 
         self.support_container_frame = tk.Frame(
-            master=self.u_tabview_files.tab("PDF Combo"),
+            master=self.nj_dashboard.tab("PDF Combo"),
             width=100,
             height=100,
             bg='pink'
         )
-        # self.support_container_frame.configure(
-        #     # width=APP_FRAME_WIDTH,
-        #     # height=APP_FRAME_HEIGHT,
-        #     width=1000,
-        #     height=1000,
-        #     bg='blue'
-        #     # bg=HEADER_BACKGROUND_COLOR
-        # )
         self.support_container_frame.grid(row=2, column=0, columnspan=1, padx=(0, 0), pady=(20, 20), sticky='ew')
 
-        self.u_tabview_files.tab("PDF Combo").grid_columnconfigure(0, weight=1)
+        self.nj_dashboard.tab("PDF Combo").grid_columnconfigure(0, weight=1)
 
         self.support_operations_bottom_frame = tk.Frame(
-            master=self.u_tabview_files.tab("PDF Combo"),
+            master=self.nj_dashboard.tab("PDF Combo"),
             bg='grey',
             width=960,
             height=50,
@@ -181,7 +164,7 @@ class PdfApp(Page):
         self.support_operations_bottom_frame.grid(row=1, column=0, columnspan=1, padx=(0, 0), pady=(5, 5), sticky='nsew')
 
         self.support_operations_top_frame = tk.Frame(
-            master=self.u_tabview_files.tab("PDF Combo"),
+            master=self.nj_dashboard.tab("PDF Combo"),
             bg='blue',
             width=960,
             height=50,
@@ -189,15 +172,6 @@ class PdfApp(Page):
             # height=50,
         )
         self.support_operations_top_frame.grid(row=0, column=0, columnspan=1, padx=(5, 5), pady=(5, 5), sticky='nsew')
-
-        # top control bar - DASHBOARD
-        # self.dnd_sort_list_control_bar = tk.Frame(
-        #     master=self.u_tabview_files.tab("PDF Infiles Listing"),
-        #     width=1000,
-        #     height=1000,
-        #     bg='black'
-        # )
-        # self.dnd_sort_list_control_bar.grid(row=5, column=0, columnspan=1, padx=(0, 0), pady=(0, 0))
 
         self.nj_user_dashboard_dnd_infiles_frame()
 
@@ -274,9 +248,6 @@ class PdfApp(Page):
 
         self.combo_images_refresh()
 
-#cccccccccccccccccccccccccccccccccccc
-
-
     def nj_user_dashboard_refresh_combo_infiles_btn(self):
         # refesh combo infiles listing
         self.refresh_combo_infiles_btn = customtkinter.CTkButton(
@@ -296,16 +267,6 @@ class PdfApp(Page):
             command=self.gen_combo_pages_from_combo
         )
         self.combo_split_pages_btn.grid(row=0, column=1, padx=(10, 10), pady=(10, 10))
-    #
-    # def nj_user_dashboard_generate_combo_pages_all_btn(self):
-    #     # split combo selection
-    #     self.combo_split_pages_all_btn = customtkinter.CTkButton(
-    #         master=self.combo_dnd_operations,
-    #         width=10,
-    #         text='Generate Combo Pages - ALL',
-    #         command=self.gen_all_combo_pages_from_combo
-    #     )
-    #     self.combo_split_pages_all_btn.grid(row=1, column=2, padx=(0, 5), pady=(0, 0))
 
     def nj_user_dashboard_refresh_combo_pages_btn(self):
         self.refresh_combo_pages_btn = customtkinter.CTkButton(
@@ -315,7 +276,6 @@ class PdfApp(Page):
         )
         self.refresh_combo_pages_btn.grid(row=0, column=2, padx=(5, 0), pady=(0, 0))
 
-#wwwwwwwwwwwwwwwww
     def nj_user_support_refresh_combo_pages_btn(self):
         self.support_refresh_combo_pages_btn = customtkinter.CTkButton(
                 master=self.support_operation_bottom_frame,
@@ -393,58 +353,8 @@ class PdfApp(Page):
                 command=self.combo_pages_refresh
         )
         self.refresh_combo_pages_btn.grid(row=0, column=1, padx=(5, 5), pady=(5, 5))
-    #
-    # def nj_dashboard_refresh_combo_pages_images_btn(self, combo_pages_listing, combo_pages_in_dir):
-    #     # combo_pages_in_dir = COMBO_PAGES_DIR
-    #     # refresh combo_pages images
-    #     self.refresh_combo_images_btn = customtkinter.CTkButton(
-    #         master=self.combo_dnd_operations,
-    #         text='Refresh Combo Pages Images xxx',
-    #         command=lambda: self.refresh_combo_pages_images(combo_pages_listing, combo_pages_in_dir)
-    #     )
-    #     self.refresh_combo_images_btn.grid(row=1, column=1, columnspan=1, padx=(5, 5), pady=(5, 5))
-    #
-    # def nj_support_refesh_combo_pages_images_btn(self, combo_pages_listing, combo_pages_in_dir):
-    #     # combo_pages_in_dir = COMBO_PAGES_DIR
-    #     # refresh combo_pages images
-    #     self.operations_refresh_combo_images_btn = customtkinter.CTkButton(
-    #         master=self.combo_infiles_operation_frame,
-    #         text='Refresh Combo Pages Imagesxxxxxx',
-    #         command=lambda: self.refresh_combo_pages_images(combo_pages_listing, combo_pages_in_dir)
-    #     )
-    #     self.operations_refresh_combo_images_btn.grid(row=0, column=0, columnspan=1, padx=(5, 5), pady=(5, 5))
 
     def nj_dashboard_combo_operations_frame(self):
-        #
-        # self.combo_infiles_top_bar_operation_frame = customtkinter.CTkFrame(
-        #     master=self.u_tabview_files.tab("PDF Combo"),
-        #     width=100,
-        #     height=100,
-        #     # fg_color=ICON_BACKGROUND_COLOR,
-        #     fg_color='cyan',
-        # )
-        # self.combo_infiles_top_bar_operation_frame.grid(row=0, column=0, columnspan=1, padx=(0, 0), pady=(0, 0))
-
-        #
-        # self.support_container_frame = tk.Frame(
-        #     master=self.u_tabview_files.tab("PDF Combo"),
-        #     width=200,
-        #     height=500,
-        #     bg=BRANDING_BACKGROUND
-        # )
-        # self.support_container_frame.grid(row=2, column=0, columnspan=3, padx=(0, 0), pady=(20, 20))
-
-## ttttttttttttttttttttttttttttttttttttttttttttt
-
-        # self.support_operation_bottom_frame = tk.Frame(
-        #     master=self.combo_listing_frame,
-        #     # width=APP_FRAME_WIDTH,
-        #     # height=APP_FRAME_HEIGHT,
-        #     width=100,
-        #     height=50,
-        #     bg='purple'
-        # )
-        # self.support_operation_bottom_frame.grid(row=2, column=0, columnspan=1, padx=(20, 20), pady=(15, 15), sticky='ew')
 
         self.nj_user_dashboard_refresh_combo_infiles_btn()
 
@@ -520,22 +430,6 @@ class PdfApp(Page):
         self.nj_dashboard_combo_filename_entry()
 
         self.nj_user_dashboard_combo_sort_operations_frame_btn()
-        #
-        # self.support_operations_top_frame = tk.Frame(
-        #     master=self.combo_listing_frame,
-        #     width=900,
-        #     height=100,
-        #     bg='black',
-        # )
-        # self.support_operations_top_frame.grid(row=0, column=0, padx=(10, 10), pady=(10, 10), sticky='ew')
-        #
-        # self.support_operations_bottom_1_frame = tk.Frame(
-        #     master=self.combo_listing_frame,
-        #     width=100,
-        #     height=100,
-        #     bg='green',
-        # )
-        # self.support_operations_bottom_1_frame.grid(row=4, column=0, padx=(5, 5), pady=(5, 5), sticky='ew')
 
         self.top_dashboard_listings_frame = tk.Frame(
             master=self.combo_listing_frame,
@@ -562,12 +456,12 @@ class PdfApp(Page):
 
     def nj_user_dashboard_dnd_infiles_frame(self):
         self.dashboard_listing_frame = tk.Frame(
-            master=self.u_tabview_files.tab("PDF Infiles Listing"),
+            master=self.nj_dashboard.tab("PDF Infiles Listing"),
             width=50,
             height=50,
             bg='orange'
          )
-        self.dashboard_listing_frame.grid(row=0, column=0, padx=(0, 0), pady=(0, 0), sticky="ew")
+        # self.dashboard_listing_frame.grid(row=0, column=0, padx=(0, 0), pady=(0, 0), sticky="ew")
 
         #
 
@@ -583,20 +477,20 @@ class PdfApp(Page):
         self.nj_user_dashboard_combo_listing_frame()
 
         self.dashboard_operations_bottom = tk.Frame(
-            master=self.u_tabview_files.tab("PDF Infiles Listing"),
+            master=self.nj_dashboard.tab("PDF Infiles Listing"),
             bg='black',
         )
-        self.dashboard_operations_bottom.grid(row=2, column=0, padx=(5, 5), pady=(5, 5), sticky='ew')
+        self.dashboard_operations_bottom.grid(row=2, column=0, padx=(0, 0), pady=(5, 0), sticky='ew')
 
         self.dashboard_operations_top = tk.Frame(
-            master=self.u_tabview_files.tab("PDF Infiles Listing"),
+            master=self.nj_dashboard.tab("PDF Infiles Listing"),
             # width=DND_TOPBAR_HEIGHT,
             # height=DND_TOPBAR_HEIGHT,
-            width=100,
+            width=1000,
             height=100,
             bg='black',
         )
-        self.dashboard_operations_top.grid(row=0, column=0, padx=(5, 5), pady=(5, 5), sticky='')
+        self.dashboard_operations_top.grid(row=0, column=0, padx=(0, 0), pady=(5, 0), sticky='ew')
 
        # load pdf btn
         self.topbar_load_pdf_file_btn = customtkinter.CTkButton(
@@ -672,7 +566,6 @@ class PdfApp(Page):
         self.combo_listing_frame_switches = []
 
     def nj_user_dashboard_merge_file_entry_frame(self):
-
         self.combo_dnd_merge_file_entry = tk.Frame(
             master=self.dashboard_operations_bottom,
             bg='red'
@@ -773,13 +666,13 @@ class PdfApp(Page):
         # main sort window
         self.dashboard_listing_frame = customtkinter.CTkScrollableFrame(
             # master=self.dashboard_listing_frame,
-            master=self.u_tabview_files.tab("PDF Infiles Listing"),
+            master=self.nj_dashboard.tab("PDF Infiles Listing"),
             label_text="Combo DnD Sort Listing",
             fg_color='red',
             # width=DND_LISTING_WIDTH,
             # height=DND_LISTING_HEIGHT,
-            width=100,
-            height=100,
+            width=950,
+            height=330,
         )
         self.dashboard_listing_frame.configure(scrollbar_button_color='red')
         self.dashboard_listing_frame.grid(row=1, column=0, padx=(0, 0), pady=(0, 0), sticky="ew")
